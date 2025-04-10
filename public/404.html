@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Page Not Found</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #00f7ff;
+            --color-secondary: #ff00e6;
+            --color-bg-start: #060615;
+            --color-bg-end: #1a1a2a;
+            --color-text-main: #e0e0ff;
+            --color-text-muted: #a0a0cc;
+            --border-color: rgba(0, 247, 255, 0.15);
+            --primary-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
+            --card-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+
+            --ff-heading: 'Orbitron', sans-serif;
+            --ff-body: 'Space Grotesk', sans-serif;
+            --fs-sm: 1.4rem;
+            --fs-md: 1.6rem;
+            --fs-lg: 2rem;
+            --fs-xl: 2.4rem;
+            --fs-xxl: 3.2rem;
+            --fs-huge: clamp(6rem, 15vw, 12rem);
+
+            --fw-regular: 400;
+            --fw-medium: 500;
+            --fw-bold: 700;
+
+            --zindex-menu: 1000;
+            --zindex-fixed: 1010;
+
+            --height-header: 7rem;
+            --transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        html { font-size: 62.5%; scroll-behavior: smooth; }
+        body, h1, h2, p { margin: 0; padding: 0; }
+        a { text-decoration: none; color: var(--color-text-muted); }
+        main { overflow-x: hidden; }
+
+        body {
+            background: linear-gradient(135deg, var(--color-bg-start), var(--color-bg-end));
+            font-family: var(--ff-body);
+            font-size: var(--fs-md);
+            color: var(--color-text-main);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: rgba(6, 6, 21, 0.8); backdrop-filter: blur(8px);
+            position: fixed; top: 0; left: 0; right: 0; display: flex; align-items: center;
+            height: var(--height-header); z-index: var(--zindex-menu); transition: var(--transition);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 2rem;
+            justify-content: center;
+        }
+
+        .header__logo {
+            font-family: var(--ff-heading);
+            font-size: var(--fs-lg); font-weight: var(--fw-bold); color: var(--color-primary);
+            display: flex; align-items: center; column-gap: 0.5rem;
+            text-shadow: 0 0 5px var(--color-primary);
+        }
+        .header__logo i { color: var(--color-white); font-size: 1.1em; }
+
+
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: calc(var(--height-header) + 4rem) 2rem 4rem 2rem;
+        }
+
+        .error-container {
+            text-align: center;
+            color: var(--color-text-main);
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .error-container__code {
+            font-family: var(--ff-heading);
+            font-size: var(--fs-huge);
+            font-weight: var(--fw-bold);
+            line-height: 1;
+            margin-bottom: 2rem;
+            color: var(--color-primary);
+            text-shadow: 0 0 10px var(--color-primary), 0 0 20px var(--color-secondary);
+            animation: pulseGlow 2s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+             from { text-shadow: 0 0 8px var(--color-primary), 0 0 15px var(--color-secondary); }
+             to { text-shadow: 0 0 15px var(--color-primary), 0 0 30px var(--color-secondary); }
+        }
+
+        .error-container__message {
+            font-size: var(--fs-xl);
+            font-weight: var(--fw-medium);
+            margin-bottom: 3rem;
+            color: var(--color-text-main);
+        }
+
+        .error-container__link {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            font-family: var(--ff-body);
+            font-size: var(--fs-md);
+            font-weight: var(--fw-semibold);
+            color: var(--color-bg-start);
+            background-color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+            border-radius: 8px;
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 247, 255, 0.4);
+        }
+
+        .error-container__link:hover {
+            background-color: transparent;
+            color: var(--color-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 247, 255, 0.6);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: var(--fs-sm);
+            color: var(--color-text-muted);
+            margin-top: auto;
+            border-top: 1px solid var(--border-color);
+            background-color: rgba(6, 6, 21, 0.5);
+        }
+        .footer a {
+             color: var(--color-primary);
+             font-weight: var(--fw-medium);
+             transition: var(--transition);
+        }
+        .footer a:hover {
+             color: var(--color-secondary);
+             text-decoration: underline;
+        }
+
+        @media screen and (max-width: 480px) {
+            html { font-size: 58%; }
+            .error-container__code { font-size: clamp(5rem, 20vw, 10rem); }
+            .error-container__message { font-size: var(--fs-lg); }
+             .header { height: 6rem; }
+            body { padding-top: 6rem; }
+            .main-content { padding-top: calc(6rem + 2rem); }
+
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <a href="/index.html" class="header__logo">
+             <i class="ri-error-warning-line"></i><span>Error</span>
+        </a>
+    </header>
+
+    <main class="main-content">
+        <div class="error-container">
+            <h1 class="error-container__code">404</h1>
+            <p class="error-container__message">Oops! The page you're looking for seems to have vanished into the digital void.</p>
+            <a href="/index.html" class="error-container__link">Return to Safety (Home)</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+         © 2024 Your Website Name | Need help? <a href="mailto:joshuaapostol909@gmail.com">Contact Us</a>
+    </footer>
+
+</body>
+</html>

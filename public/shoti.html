@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Shoti Video Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        button,
+        a.button {
+            font-size: 18px;
+            padding: 12px 20px;
+            border-radius: 20px;
+            background-color: #ff4081;
+            color: white;
+            cursor: pointer;
+            border: none;
+            margin: 20px 0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        button:hover,
+        a.button:hover {
+            background-color: #ff79b0;
+        }
+
+        #myVideo {
+            display: none;
+            max-width: 100%;
+            width: 90%;
+            max-height: 50vh;
+            border-radius: 10px;
+            border: 5px solid rgba(255, 255, 255, 0.5);
+            margin-top: 20px;
+        }
+
+        .video-info {
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            width: 90%;
+            max-width: 400px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .video-info h2 {
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .video-info p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 600px) {
+
+            button,
+            a.button {
+                font-size: 14px;
+                padding: 10px 16px;
+            }
+
+            #myVideo {
+                width: 95%;
+            }
+        }
+    </style>
+    <script>
+        async function loadVideo() {
+            const loadButton = document.getElementById("loadButton");
+            const mainHeader = document.getElementById("mainHeader");
+            const videoInfo = document.getElementById("videoInfo");
+            const myVideo = document.getElementById("myVideo");
+
+            loadButton.disabled = true;
+            loadButton.textContent = "Loading...";
+
+            const apiURL = "https://shoti-rho.vercel.app/api/request/f";
+
+            try {
+                const response = await fetch(apiURL, {
+                    method: "POST",
+                });
+
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+
+                const data = await response.json();
+                const videoURL = data.url;
+
+                myVideo.src = videoURL;
+                myVideo.style.display = "block";
+
+                videoInfo.innerHTML = `
+            <h2>Video Details:</h2>
+            <p><strong>Title:</strong> ${data.title}</p>
+            <p><strong>Username:</strong> ${data.username}</p>
+            <p><strong>Nickname:</strong> ${data.nickname}</p>
+            <p><strong>Total Videos:</strong> ${data.totalvids}</p>
+        `;
+                videoInfo.style.display = "block";
+
+                mainHeader.style.display = "none";
+                loadButton.disabled = false;
+                loadButton.textContent = "Generate Another Video";
+            } catch (error) {
+                loadButton.textContent = "Error. Try Again";
+                loadButton.disabled = false;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="header" id="mainHeader">
+        <h1>Random Shoti & Video Generator</h1>
+        <h2>Just enjoy this bullshit</h2>
+    </div>
+    <button id="loadButton" onclick="loadVideo()">Generate Some Shoti Videos</button>
+    <video id="myVideo" controls autoplay></video>
+    <div id="videoInfo" class="video-info"></div>
+</body>
+
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Maintenance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Optional: Add a favicon -->
+    <!-- <link rel="icon" type="image/png" href="img/favicon.png"> -->
+
+    <style>
+        :root {
+            --color-primary: #25ab75;
+            --color-primary-dark: #208c61;
+            --color-bg-start: #0a0a10;
+            --color-bg-end: #1a1a2a;
+            --card-bg: rgba(36, 36, 36, 0.85);
+            --color-white: #f0f0f0;
+            --color-text-main: #e0e0e0;
+            --color-text-muted: #a0a0a0;
+            --border-color: rgba(37, 171, 117, 0.15);
+            --border-color-light: rgba(37, 171, 117, 0.3);
+            --primary-shadow: 0 0 15px rgba(37, 171, 117, 0.3);
+            --card-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+
+            --ff-body: "Space Grotesk", sans-serif;
+            --fs-sm: 1.4rem;
+            --fs-md: 1.6rem;
+            --fs-lg: 2rem;
+            --fs-xl: 2.8rem; /* Adjusted size */
+            --fs-xxl: 3.2rem;
+
+            --fw-regular: 400;
+            --fw-medium: 500;
+            --fw-semibold: 600;
+            --fw-bold: 700;
+
+            --transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        html { font-size: 62.5%; }
+        body, h1, h2, p { margin: 0; padding: 0; }
+        a { text-decoration: none; color: var(--color-primary); }
+
+        body, html {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: 100vh; /* Use min-height */
+            font-family: var(--ff-body);
+            background: linear-gradient(135deg, var(--color-bg-start), var(--color-bg-end));
+            color: var(--color-text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding: 2rem; /* Add padding */
+        }
+
+        .maintenance-container {
+            text-align: center;
+            background: var(--card-bg);
+            padding: 3rem 2.5rem; /* Adjusted padding */
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+            max-width: 90%;
+            width: 450px; /* Slightly wider */
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s forwards ease-out 0.2s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .maintenance-icon {
+            font-size: 5rem; /* Larger icon */
+            color: var(--color-primary);
+            margin-bottom: 2rem;
+            display: inline-block;
+            animation: spin 5s linear infinite alternate;
+        }
+
+        @keyframes spin {
+            from { transform: rotateY(0deg) scale(1); }
+            to { transform: rotateY(360deg) scale(1.05); }
+        }
+
+        h1 {
+            font-size: var(--fs-xl);
+            font-weight: var(--fw-bold);
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            font-size: var(--fs-md);
+            color: var(--color-text-muted);
+            margin-bottom: 1rem;
+            max-width: 35ch; /* Limit line length */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        p:last-of-type {
+             margin-bottom: 2.5rem;
+        }
+
+        .contact-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            color: var(--color-white);
+            font-weight: var(--fw-semibold);
+            transition: var(--transition);
+            border-radius: 8px;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            background-color: var(--color-primary);
+            box-shadow: 0 0 10px rgba(37, 171, 117, 0.3);
+        }
+
+        .contact-button:hover {
+            background-color: var(--color-primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(37, 171, 117, 0.4);
+        }
+
+        @media (max-width: 600px) {
+             html { font-size: 58%; }
+            .maintenance-container {
+                width: 90%;
+                padding: 2.5rem 2rem;
+            }
+            h1 {
+                font-size: 2.4rem; /* Slightly smaller heading */
+            }
+            p {
+                font-size: 1.5rem;
+            }
+             .maintenance-icon { font-size: 4rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="maintenance-container">
+         <i class="ri-settings-3-line maintenance-icon"></i>
+        <h1>Under Maintenance</h1>
+        <p>Our site is currently undergoing scheduled maintenance to improve your experience.</p>
+        <p>We apologize for any inconvenience and expect to be back online shortly. Thank you for your patience!</p>
+        <a href="mailto:joshuaapostol909@gmail.com" class="contact-button">Contact Support</a>
+    </div>
+</body>
+
+</html>

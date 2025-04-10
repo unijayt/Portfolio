@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>502 Bad Gateway</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+      :root {
+          --color-primary: #25ab75;
+          --color-primary-dark: #208c61;
+          --color-bg-start: #0a0a10;
+          --color-bg-end: #1a1a2a;
+          --color-white: #f0f0f0;
+          --color-text-main: #e0e0e0;
+          --color-text-muted: #a0a0a0;
+          --border-color: rgba(37, 171, 117, 0.15);
+          --primary-shadow: 0 0 15px rgba(37, 171, 117, 0.3);
+
+          --ff-body: "Space Grotesk", sans-serif;
+          --fs-sm: 1.4rem;
+          --fs-md: 1.6rem;
+          --fs-lg: 2rem;
+          --fs-xl: 2.4rem;
+          --fs-huge: clamp(8rem, 20vw, 15rem);
+
+          --fw-regular: 400;
+          --fw-medium: 500;
+          --fw-semibold: 600;
+          --fw-bold: 700;
+
+          --height-header: 7rem;
+          --transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+      html { font-size: 62.5%; scroll-behavior: smooth; }
+      body, h1, h2, p { margin: 0; padding: 0; }
+      a { text-decoration: none; color: var(--color-primary); transition: var(--transition); }
+      a:hover { color: var(--color-primary-dark); }
+
+      body {
+          background: linear-gradient(135deg, var(--color-bg-start), var(--color-bg-end));
+          font-family: var(--ff-body);
+          font-size: var(--fs-md);
+          color: var(--color-text-main);
+          line-height: 1.6;
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+          text-align: center;
+      }
+
+      .header {
+          background-color: rgba(10, 10, 16, 0.8); backdrop-filter: blur(8px);
+          position: fixed; top: 0; left: 0; right: 0; display: flex; align-items: center;
+          height: var(--height-header); z-index: 1000; transition: var(--transition);
+          border-bottom: 1px solid var(--border-color);
+          padding: 0 2rem;
+          justify-content: center;
+      }
+
+      .header__logo {
+          font-size: var(--fs-lg); font-weight: var(--fw-bold); color: var(--color-primary);
+          display: flex; align-items: center; column-gap: 0.5rem;
+          text-shadow: 0 0 5px var(--color-primary);
+      }
+      .header__logo i { color: var(--color-white); font-size: 1.1em; }
+      .header__logo span { color: var(--color-white); }
+
+
+      .main-content {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: calc(var(--height-header) + 4rem) 2rem 4rem 2rem;
+          animation: fadeIn 1s ease-out;
+      }
+
+       @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+      .error-code {
+            font-family: var(--ff-body);
+            font-size: var(--fs-huge);
+            font-weight: var(--fw-bold);
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            color: var(--color-primary);
+            text-shadow: 0 0 10px var(--color-primary), 0 0 20px var(--color-primary-dark);
+            animation: pulseGlow 2.5s infinite alternate;
+      }
+       @keyframes pulseGlow {
+             from { text-shadow: 0 0 8px var(--color-primary), 0 0 15px var(--color-primary-dark); opacity: 0.9; }
+             to { text-shadow: 0 0 15px var(--color-primary), 0 0 30px var(--color-primary-dark); opacity: 1; }
+       }
+
+      .error-title {
+          font-size: var(--fs-xl);
+          font-weight: var(--fw-semibold);
+          margin-bottom: 1rem;
+          color: var(--color-white);
+      }
+
+      .error-message {
+          font-size: var(--fs-md);
+          color: var(--color-text-muted);
+          max-width: 50ch;
+          margin-bottom: 2.5rem;
+      }
+
+      .request-id {
+          font-size: var(--fs-sm);
+          color: var(--color-text-muted);
+          margin-bottom: 3rem;
+          font-family: monospace;
+          background-color: rgba(37, 171, 117, 0.05);
+          padding: 0.5rem 1rem;
+          border-radius: 4px;
+          border: 1px solid var(--border-color);
+      }
+
+       .home-link {
+            display: inline-block; padding: 1.2rem 3rem; color: var(--color-white);
+            font-weight: var(--fw-semibold); transition: var(--transition);
+            border-radius: 8px; text-align: center; border: none; cursor: pointer;
+            background-color: var(--color-primary);
+       }
+       .home-link:hover {
+             background-color: var(--color-primary-dark); transform: translateY(-2px);
+             box-shadow: 0 4px 15px rgba(37, 171, 117, 0.3);
+       }
+
+
+      .footer {
+          text-align: center;
+          padding: 2rem;
+          font-size: var(--fs-sm);
+          color: var(--color-text-muted);
+          margin-top: auto;
+          border-top: 1px solid var(--border-color);
+          background-color: rgba(10, 10, 16, 0.5);
+      }
+       .footer a {
+             color: var(--color-primary);
+             font-weight: var(--fw-medium);
+        }
+        .footer a:hover {
+             color: var(--color-primary-dark);
+             text-decoration: underline;
+        }
+
+      @media screen and (max-width: 480px) {
+            html { font-size: 58%; }
+            .error-code { font-size: clamp(6rem, 25vw, 12rem); }
+            .error-title { font-size: var(--fs-lg); }
+             .header { height: 6rem; }
+             .main-content { padding-top: calc(6rem + 2rem); }
+      }
+
+    </style>
+
+    <script>
+      function generateRequestId() {
+        const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        let requestId = '';
+        for (let i = 0; i < 16; i++) {
+          const randomIndex = Math.floor(Math.random() * characters.length);
+          requestId += characters[randomIndex];
+        }
+        return requestId.toUpperCase();
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const requestIdElement = document.getElementById('request-id');
+        if (requestIdElement) {
+            const requestId = generateRequestId();
+            requestIdElement.textContent = 'Request ID: ' + requestId + '-HKG';
+        }
+      });
+    </script>
+</head>
+<body>
+    <header class="header">
+        <a href="/index.html" class="header__logo">
+            <i class="ri-signal-wifi-error-line"></i><span>Service Error</span>
+        </a>
+    </header>
+
+    <main class="main-content">
+        <h1 class="error-code">502</h1>
+        <h2 class="error-title">Bad Gateway</h2>
+        <p class="error-message">
+          The server, while acting as a gateway or proxy, received an invalid response from an upstream server. Please try again later.
+        </p>
+        <div class="request-id" id="request-id">Request ID: Generating...</div>
+    </main>
+
+    <footer class="footer">
+      Powered by <a href="https://portfolioo.vercel.app" target="_blank" rel="noopener noreferrer">joshua Apostol</a>
+    </footer>
+</body>
+</html>
